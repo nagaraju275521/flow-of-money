@@ -22,6 +22,7 @@
         <mapping class="com.vktechnology.naagu.models.CreditClearRecord" />
         <mapping class="com.vktechnology.naagu.models.DebitClearRecord" />
         <mapping class="com.vktechnology.naagu.models.Dairy" />
+        <mapping class="com.vktechnology.naagu.models.Student" />
     </session-factory>
 	    
 </hibernate-configuration>

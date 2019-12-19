@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+       <class name="com.vktechnology.naagu.models.Expenses"  table="expenses">
+              <id name="Id" column="Id">
+                     <generator class="assigned"></generator>
+              </id>
+
+              <property name="date" column="Date"></property>
+              <property name="unit_Type" column="Unit_Type"></property>
+              <property name="unit_Name" column="Unit_Name"></property>
+              <property name="unit_Tag" column="Unit_Tag"></property>
+              <property name="unit_price" column="Unit_price"></property>
+              <property name="quantity" column="Quantity"></property>
+              <property name="amount" column="Amount"></property>
+              <property name="source_Name" column="Source_Name"></property>
+              <property name="source_bal" column="Source_bal"></property>
+              <property name="description" column="Description"></property>
+              <property name="sold_company" column="Sold_company"></property>
+              <property name="area" column="Area"></property>
+              <property name="whome_to" column="Whome_to"></property>
+              <property name="user" column="User"></property>
+
+       </class>
+
+</hibernate-mapping>

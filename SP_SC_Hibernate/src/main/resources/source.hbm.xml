@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+       <class name="com.vktechnology.naagu.models.Source"  table="source">
+              <id name="sourceId" column="SourceId">
+                     <generator class="assigned"></generator>
+              </id>
+
+              <property name="sourceDate" column="SourceDate"></property>
+                <property name="sourceType" column="SourceType"></property>
+              <property name="sourceName" column="SourceName"></property>
+              <property name="sourceAmount" column="SourceAmount"></property>
+           <property name="sourceDescription" column="SourceDescription"></property>
+           <property name="user" column="User"></property>
+       </class>
+
+</hibernate-mapping>

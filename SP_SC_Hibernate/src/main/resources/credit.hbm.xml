@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+       <class name="com.vktechnology.naagu.models.Credit"  table="credit">
+              <id name="Id" column="Id">
+                     <generator class="assigned"></generator>
+              </id>
+
+              <property name="credit_Date" column="Credit_Date"></property>
+              <property name="credit_Name" column="Credit_Name"></property>
+              <property name="credit_Amount" column="Credit_Amount"></property>
+              <property name="credit_C_Amount" column="Credit_C_Amount"></property>
+              <property name="credit_Description" column="Credit_Description"></property>
+              <property name="user" column="User"></property>
+
+       </class>
+
+</hibernate-mapping>

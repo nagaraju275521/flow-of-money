@@ -1,0 +1,35 @@
+.table1{
+	width: 500px;
+	border: 2px solid green;
+	align: center;
+}
+.table1 th{
+	width: 200px;
+	border: 1px solid blue;
+
+}
+.table1 td{
+	width: 200px;
+	border: 1px solid black;
+
+}
+
+.remove{
+
+	position: absolute;top: 305px;left: 430px;
+}
+
+.rem{
+	position: absolute;top: 305px;left: 300px;
+}
+
+.box{
+	width:300px;
+	height:250px;
+	border: 1px solid red;
+	position: absolute;top: 100px;left: 100px;
+	background-color: cyan;
+	text-align: center;
+	padding-top: 50px;
+
+}

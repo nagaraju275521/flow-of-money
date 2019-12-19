@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  
+<link href="../resources/css/pageStyle.css" rel="Stylesheet" type="text/css" />
+<link href="../resources/css/tableStyles.css" rel="Stylesheet" type="text/css" />
+<link href="../resources/css/smoothness-jquery-ui.css" rel="Stylesheet" type="text/css" />
+<link href="../resources/css/paginationForExpense.min.css" rel="Stylesheet" type="text/css" />
+<script type="text/javascript" src="../resources/js/jquery-1.12.0.min.js"></script>
+<script type="text/javascript" src="../resources/js/holderView.js"></script>
+
+<link href="../resources/css/bootstrap-combined.min.css" rel="Stylesheet" type="text/css" />
+<link href="../resources/css/bootstrap-datetimepicker.min.css" rel="Stylesheet" type="text/css" />
+<script type="text/javascript" src="../resources/js/Bootstrap-datepicker.min.js"></script>
+
+<link href="../resources/css/jquery.toastmessage.css" rel="Stylesheet" type="text/css" />
+<script type="text/javascript" src="../resources/js/jquery.toastmessage-min.js"></script>    
+
+<script type="text/javascript" src="../resources/js/commonFunctions.js"></script>
+<script type="text/javascript" src="../resources/js/bootstrap-3.3.6.min.js"></script>
+<script type="text/javascript" src="../resources/js/bootstrap-popup.min.js"></script>
+
+<script type="text/javascript" src="../resources/js/jquery-ui-1.10.4.min.js"></script>
+<script type="text/javascript" src="../resources/js/jquery.sessionTimeout.js"></script>
+
+<script type="text/javascript">
+    
+sessionTimeOUT('../sessionRedir');
+    
+</script>
+</head>
+<body onload="return hidef();">
+
+  <h2 style="text-align:center;">Holder Details</h2>
+    <!-- Trigger the modal with a button -->
+<form action="../addBank" method="get" id="form123">
+   <table class="formTable"><tr>
+    <th>Date</th><td>
+    	<div id="datetimepicker" class="input-append date">
+				<input type="text" name="Holder_Date"  id="Holder_Date" /> 
+				<span class="add-on"> 
+					<i	data-time-icon="icon-time"  data-date-icon="icon-calendar"></i>
+				</span>
+		</div>
+    </td><td></td>
+    </tr>
+      <tr>
+        <th>Holder Type</th><td>
+        <select name="Holder_Type" id="parent_selection">
+          <option value="select">-- Please Select --</option>
+          <option value="bank" selected>Bank</option>
+          <option value="Pocket">Pocket</option>
+
+        </select>
+      </td><td></td>
+      </tr>
+      <tr>
+        <th>Holder Name</th><td>
+        <select name="Holder_Name" id="child_selection">
+        <option value="none">select</option>
+             </select>
+      </td><td><p class="p" data-toggle="modal" data-target="#myModal" >New</p></td></tr>
+      <tr>
+        <th>Amount</th><td><input type="text"  name="Holder_Amount" id="Holder_Amount" />
+      </td></tr>
+      <tr>
+        <th>Description</th><td><textarea  name="Holder_Description" id="Holder_Description"></textarea>
+      </td></tr>
+      <tr>
+        <th>Source</th><td>
+        <select name="Holder_Source" class="source_selection" id="Holder_Source">
+				<option value="select">select</option>
+        </select>
+      </td></tr>
+      <tr>
+        <th></th>
+        	<td>
+        		<button type="submit" class="BlueBtn BlueBtn-primary">Save</button>&nbsp;|
+        		<button type="button" class="BlueBtn BlueBtn-primary" onclick="window.history.back();">Cancel</button>
+        	</td>
+      </tr>
+      </table>
+  </form>
+  
+  
+<div class="container">
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" style="width:20px;">&times;</button>
+          <h4 class="modal-title">New holder entry</h4>
+        </div>
+        <div class="modal-body">          
+          <form id="formPopUp" action="../addBank" method="get">
+          	<table class="formTable"><tr>
+      <th>Date</th><td><input type="text" name="Holder_Date" id="Holder_Date123" class="week-picker">
+    </tr>
+      <tr>
+        <th>Holder Type</th><td>
+        <select name="Holder_Type" id="Holder_Type123">
+          <option value="select" selected>-- Please Select --</option>
+          <option value="bank">Bank</option>
+          <option value="Pocket">Pocket</option>
+        </select>
+      </td>
+      </tr>
+      <tr>
+        <th>Holder Name</th><td>
+        <input type="text" name="Holder_Name" id="Holder_Name123" autocomplete="off"/><p><span></span></p>
+        <input type="hidden"  name="Holder_Amount" id="Holder_Amount123" value="0"/>
+        <input type="hidden"  name="Holder_Description" id="Holder_Description123" value="n/a"/>
+        <input type="hidden"  name="Holder_Source" id="Holder_Source123" value="new"/>        
+      </td></tr>
+      </table>
+        </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button"  data-dismiss="modal">Close</button>
+          <button type="button" id="myButton">Save</button>
+        </div>
+      </div>      
+    </div>
+  </div>  
+</div>  
+</body>
+</html>

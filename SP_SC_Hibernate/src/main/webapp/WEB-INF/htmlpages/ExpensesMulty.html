@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FlowOfMoney</title>
+
+    <link rel="import" href="menu">
+
+    <!-- start calender -->
+    <link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css"/>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+
+ 	<link href="../resources/css/expensesMultyStyles.css" rel="Stylesheet" type="text/css" />
+ 	
+    <script type="text/javascript" src="../resources/js/jquery.weekpicker.js" ></script>
+    
+
+</head>
+<body margintop="30px"  onload="return hidef();">
+<Strong>Expenses</Strong>
+ 
+
+
+<script>
+
+
+$(document).ready(function() {
+    $("#myButton").click(function() {
+    	alert("fgfdggg");
+        $("#form1").submit();
+        alert("222");
+        $("#form2").submit();
+    });
+    
+});
+
+
+</script>
+
+<div>
+<div style="float: left;">
+<form id="form1" action="../addExpenses" method="post">
+	<table>
+	<tr><td><input type="text" name="Date" id="Date"></td></tr>
+	<tr><td><input type="text" name="Unit_Type" id="Unit_Type"></td></tr>
+	<tr><td><input type="text" name="Unit_Name" id="Unit_Name"></td></tr>
+	<tr><td><input type="text" name="Unit_Tag" id="Unit_Tag"></td></tr>
+	<tr><td><input type="text" name="Unit_price" id="Unit_price"></td></tr>
+	<tr><td><input type="text" name="Quantity" id="Quantity"></td></tr>
+	<tr><td><input type="text" name="Amount" id="Amount"></td></tr>
+	<tr><td>
+	<select name="Source_Name" class="child_selection" id="selsource">
+			<option value="select">Select</option>
+	</select>
+	</td></tr>
+	<tr><td><input type="text" name="Sold_company" id="Sold_company"></td></tr>
+	<tr><td><input type="text" name="Area" id="Area"></td></tr>
+	<tr><td><input type="text" name="Whome_to" id="Whome_to"></td></tr>
+	<tr><td><textarea name="Description" id="Description">ddd</textarea></td></tr>
+	
+	</table>
+</form>
+</div>
+<div style="float: left;">
+<form id="form2">
+	<table>
+	<tr><td><input type="text" name="date" id=""></td></tr>
+	<tr><td><input type="text" name="Unit_Type" id=""></td></tr>
+	<tr><td><input type="text" name="Unit_Name" id=""></td></tr>
+	<tr><td><input type="text" name="Unit_Tag" id=""></td></tr>
+	<tr><td><input type="text" name="Unit_price" id=""></td></tr>
+	<tr><td><input type="text" name="Quantity" id=""></td></tr>
+	<tr><td><input type="text" name="Amount" id=""></td></tr>
+	<tr><td>
+	<select name="Source_Name" class="child_selection" id="selsource">
+			<option value="select">Select</option>
+	</select>
+	</td></tr>
+	<tr><td><input type="text" name="Sold_company" id="Sold_company"></td></tr>
+	<tr><td><input type="text" name="Area" id="Area"></td></tr>
+	<tr><td><input type="text" name="Whome_to" id="Whome_to"></td></tr>
+	<tr><td><textarea name="Description" id="Description">ddd</textarea></td></tr>
+	
+	</table>
+</form>
+</div>
+<div style="float: left;">
+<form id="form3">
+	<table>
+	<tr><td><input type="text" name="date" id=""></td></tr>
+	<tr><td><input type="text" name="Unit_Type" id=""></td></tr>
+	<tr><td><input type="text" name="Unit_Name" id=""></td></tr>
+	<tr><td><input type="text" name="Unit_Tag" id=""></td></tr>
+	<tr><td><input type="text" name="Unit_price" id=""></td></tr>
+	<tr><td><input type="text" name="Quantity" id=""></td></tr>
+	<tr><td><input type="text" name="Amount" id=""></td></tr>
+	<tr><td>
+	<select name="Source_Name" class="child_selection" id="selsource">
+			<option value="select">Select</option>
+	</select>
+	</td></tr>
+	<tr><td><input type="text" name="Sold_company" id="Sold_company"></td></tr>
+	<tr><td><input type="text" name="Area" id="Area"></td></tr>
+	<tr><td><input type="text" name="Whome_to" id="Whome_to"></td></tr>
+	<tr><td><textarea name="Description" id="Description">ddd</textarea></td></tr>
+	
+	</table>
+</form>
+</div>
+</div>
+<button id="myButton">save all</button>
+</body>
+</html>

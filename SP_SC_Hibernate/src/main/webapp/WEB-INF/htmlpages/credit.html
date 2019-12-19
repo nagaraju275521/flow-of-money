@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title></title>
+<link href="../resources/css/pageStyle.css" rel="Stylesheet" type="text/css" />
+<link href="../resources/css/tableStyles.css" rel="Stylesheet" type="text/css" />
+<link href="../resources/css/smoothness-jquery-ui.css" rel="Stylesheet" type="text/css" />
+<link href="../resources/css/paginationForExpense.min.css" rel="Stylesheet" type="text/css" />
+<script type="text/javascript" src="../resources/js/jquery-1.12.0.min.js"></script>
+
+<link href="../resources/css/bootstrap-combined.min.css" rel="Stylesheet" type="text/css" />
+<link href="../resources/css/bootstrap-datetimepicker.min.css" rel="Stylesheet" type="text/css" />
+<script type="text/javascript" src="../resources/js/Bootstrap-datepicker.min.js"></script>
+
+<link href="../resources/css/jquery.toastmessage.css" rel="Stylesheet" type="text/css" />
+<script type="text/javascript" src="../resources/js/jquery.toastmessage-min.js"></script>
+    
+<script type="text/javascript" src="../resources/js/creditView.js"></script>
+<script type="text/javascript" src="../resources/js/commonFunctions.js"></script>
+<script type="text/javascript" src="../resources/js/bootstrap-3.3.6.min.js"></script>
+<script type="text/javascript" src="../resources/js/bootstrap-popup.min.js"></script>
+
+<script type="text/javascript" src="../resources/js/jquery-ui-1.10.4.min.js"></script>
+<script type="text/javascript" src="../resources/js/jquery.sessionTimeout.js"></script>
+<script type="text/javascript">
+	sessionTimeOUT('../sessionRedir');
+</script>   
+</head>
+<body onload="return hidef();">
+
+	<h2>Credit Details</h2>
+	
+	<form action="../addCredit" method="get" id="formCredit">
+
+		<table class="formTable">
+			<tr>
+				<th>Date</th>
+				<td>
+					<div id="datetimepickerCred" class="input-append date">
+						<input type="text" name="Credit_Date"  id="Credit_Date" /> 
+						<span class="add-on"> 
+						<i	data-time-icon="icon-time"  data-date-icon="icon-calendar"></i>
+						</span>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<th>Crediter Name</th>
+				<td class="hideShow">
+					<div id="inputS"><input type="text" name="vvvvv" id="inputname" /></div>
+					<div id="selectS">
+						<select name="jjjjj" id="selectname" class="child_selection">
+							<option value="select" selected>select</option>
+						</select></div>
+					<div id="new"><strong>New</strong></div>
+					<div id="exist"><strong>Exist</strong></div>
+				</td>
+			</tr>
+			<tr>
+				<th>Amount</th>
+				<td><input type="text" name="Credit_Amount" id="Credit_Amount"/></td>
+			</tr>
+			<tr>
+				<th>Description</th>
+				<td><textarea name="Credit_Description" id="Credit_Description"></textarea></td>
+			</tr>
+
+
+			<tr>
+				<th></th>
+				<td>
+					<button type="submit" class="BlueBtn BlueBtn-primary">Save</button>&nbsp;|
+					<button type="button" class="BlueBtn BlueBtn-primary" onclick="window.history.back();">Cancel</button>
+				</td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script type="text/javascript" 	src="../resources/js/jquery-1.12.0.min.js"></script> 
+<link href="../resources/css/tableStyles.css" rel="Stylesheet" type="text/css" />
+<script type="text/javascript">
+
+
+	
+	var user = "naagu";
+	var dle_Id = 0;
+	
+$.ajax({
+	
+    type: "GET",
+    url: "../displyUserOnHeader",
+    cache : false,
+	dataType : "json",
+    data: { dle_Id: dle_Id}, // parameters
+	success : function(response) {
+		//alert(response);
+		user = response;
+		$("#user").append("Hi  "+user);
+		
+	},
+	error : function(response, status, er) {
+		alert("error: " + response + " status: " + status+ " er:" + er);
+		
+	}
+});
+	
+
+
+
+</script>
+</head>
+<body style="margin: 0px;" >
+<div class="headerView">
+	<div class="first">
+		<strong>VK Technologies Limited.</strong>
+	</div>
+	<div class="second">
+				<strong id="user"></strong>
+	</div>
+</div>
+</body>
+</html>

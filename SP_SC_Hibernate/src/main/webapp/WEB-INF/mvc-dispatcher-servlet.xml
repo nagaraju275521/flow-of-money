@@ -1,0 +1,158 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:cache="http://www.springframework.org/schema/cache" xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:p="http://www.springframework.org/schema/p" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:security="http://www.springframework.org/schema/security"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd 
+        http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd 
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd 
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/security
+        http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+
+	<context:component-scan base-package="com.vktechnology.naagu" />
+	
+	<context:property-placeholder location="classpath:database.properties" />
+	
+	 <mvc:resources mapping="/resources/**" location="/resources/"  cache-period="31556926"/>
+	
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix">
+			<value>/WEB-INF/pages/</value>
+		</property>
+		<property name="suffix">
+			<value>.jsp</value>
+		</property>
+	</bean>
+	
+	<mvc:resources mapping="/htmlpages/**" location="/WEB-INF/htmlpages/" />
+	
+	<mvc:annotation-driven />
+	
+	<security:global-method-security    pre-post-annotations="enabled"  secured-annotations="enabled" /> 
+	
+	<mvc:interceptors>
+        <bean id="webContentInterceptor" class="org.springframework.web.servlet.mvc.WebContentInterceptor">
+                <property name="cacheSeconds" value="0"/>
+                <property name="useExpiresHeader" value="false"/>
+                <property name="useCacheControlHeader" value="true"/>
+                <property name="useCacheControlNoStore" value="true"/>
+            </bean>     
+    </mvc:interceptors>
+
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="${database.driver}" />
+		<property name="url" value="${database.url}" />
+		<property name="username" value="${database.user}" />
+		<property name="password" value="${database.password}" />
+	</bean>
+
+	
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation">
+            <value>classpath:hibernate.cfg.xml</value>
+        </property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
+				<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+			</props>
+		</property>
+	</bean>
+
+	<tx:annotation-driven />
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="persistenceExceptionTranslationPostProcessor"
+		class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
+
+	
+	
+	 <bean id="loginDao" class="com.vktechnology.naagu.dao.login.LoginDaoImpl">
+        <constructor-arg>
+            <ref bean="sessionFactory" />
+        </constructor-arg>
+    </bean>
+	
+	 <bean id="expensesDao" class="com.vktechnology.naagu.dao.ExpensesDaoImpl">
+        <constructor-arg>
+            <ref bean="sessionFactory" />
+        </constructor-arg>
+    </bean>
+    
+	  <bean id="expensesService" class="com.vktechnology.naagu.service.ExpensesServiceImpl"></bean>
+
+    
+    <bean id="sourceDao" class="com.vktechnology.naagu.dao.SourceDaoImpl">
+        <constructor-arg>
+            <ref bean="sessionFactory" />
+        </constructor-arg>
+    </bean>
+    
+   	<bean id="sourceService" class="com.vktechnology.naagu.service.SourceServiceImpl"></bean>
+
+    <bean id="holderDao" class="com.vktechnology.naagu.dao.HolderDaoImpl">
+        <constructor-arg>
+            <ref bean="sessionFactory" />
+        </constructor-arg>
+    </bean>
+    
+   <bean id="holderService" class="com.vktechnology.naagu.service.HolderServiceImpl"></bean>
+    
+    <bean id="signupDao" class="com.vktechnology.naagu.dao.SignupDaoImpl">
+        <constructor-arg>
+            <ref bean="sessionFactory" />
+        </constructor-arg>
+    </bean>
+    <bean id="signupService" class="com.vktechnology.naagu.service.SignupServiceImpl"></bean>
+    
+    <bean id="creditDao" class="com.vktechnology.naagu.dao.CreditDaoImpl">
+        <constructor-arg>
+            <ref bean="sessionFactory" />
+        </constructor-arg>
+    </bean>
+    <bean id="creditService" class="com.vktechnology.naagu.service.CreditServiceImpl"></bean>
+    
+    <bean id="debitDao" class="com.vktechnology.naagu.dao.DebitDaoImpl">
+        <constructor-arg>
+            <ref bean="sessionFactory" />
+        </constructor-arg>
+    </bean>
+    <bean id="debitService" class="com.vktechnology.naagu.service.DebitServiceImpl"></bean>
+    
+    <bean id="dairyDao" class="com.vktechnology.naagu.dao.DairyDaoImpl">
+        <constructor-arg>
+            <ref bean="sessionFactory" />
+        </constructor-arg>
+    </bean>
+    <bean id="dairyService" class="com.vktechnology.naagu.service.DairyServiceImpl"></bean>
+    
+    
+    <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="host" value="smtp.gmail.com" />
+        <property name="port" value="587" />
+        <property name="username" value="vishwakarmanagu@gmail.com" />
+        <property name="password" value="nagaraju" />
+      
+        <property name="javaMailProperties">
+           <props>
+                <prop key="mail.transport.protocol">smtp</prop> 
+                  <prop key="mail.smtp.auth">true</prop>
+                  <prop key="mail.smtp.starttls.enable">true</prop>
+                  <prop key="mail.debug">true</prop>
+               </props>
+        </property>
+    </bean>
+    
+	 
+</beans>

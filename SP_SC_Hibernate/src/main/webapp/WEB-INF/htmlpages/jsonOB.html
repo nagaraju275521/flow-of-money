@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>hiiiiii</title>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+
+    <script type="text/jscript">
+
+</script>
+
+    <script>
+
+        alert("hiiiiiiiiiiii");
+        $(function() {
+
+            var url = "/jsonExpenses";
+            $.get(url, null, function (data) {
+                $("#rData").html(data);
+                alert("dfdfdf"+data.name);
+            });
+
+            alert("fffffffffff");
+
+            var dd = "${jsonList.name}";
+            var ddd = '${jsonList}';
+
+            alert(ddd+"gggAxAggg"+dd);
+            var list = ["List A", "List B", "List C", "List D", "List E"];
+            $.each(list, function (index, value) {
+                //alert(index + ": " + value);
+            });
+
+            var JSONObj = { "name" : "tutorialspoint", "year"  : 2005 };
+
+
+
+            alert(JSONObj.name);
+
+            var text = '{"employees":[' +
+                    '{"firstName":"naagu","lastName":"Doe" },' +
+                    '{"firstName":"nagaraju","lastName":"Smith" },' +
+                    '{"firstName":"Peter","lastName":"Jones" }]}';
+            obj = JSON.parse(text);
+            alert(obj.employees[1].firstName);
+        });
+    </script>
+</head>
+<body onload="return ddd();">
+<h1>hiiiiiiiiiii</h1>
+<p id="rData">
+</p>
+</body>
+</html>

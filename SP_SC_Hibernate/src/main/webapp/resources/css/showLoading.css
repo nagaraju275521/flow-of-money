@@ -1,0 +1,10 @@
+
+.loading-indicator {
+  height: 200px;
+  width: 200px;
+  background: url('../images/ajax-loading.gif') no-repeat center center;
+}
+
+.loading-indicator-overlay {
+  
+}

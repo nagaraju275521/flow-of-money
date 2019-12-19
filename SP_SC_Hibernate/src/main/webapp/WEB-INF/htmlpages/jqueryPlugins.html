@@ -1,0 +1,130 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>jQuery Bootstrap-popup Plugin Demos</title>
+    <!--Third-party-->
+    <link href="../resources/css/tableStyles.css" rel="Stylesheet" type="text/css" />
+    <link href="../resources/css/smoothness-jquery-ui.css" rel="Stylesheet" type="text/css" />
+    <link href="../resources/css/paginationForExpense.min.css" rel="Stylesheet" type="text/css" />
+    <!-- <script src="http://code.jquery.com/jquery-1.12.1.min.js"></script> -->
+    <script type="text/javascript" src="../resources/js/jquery-1.12.0.min.js"></script>
+   <!--  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> -->
+   <script type="text/javascript" src="../resources/js/commonFunctions.js"></script>
+   <script type="text/javascript" src="../resources/js/bootstrap-3.3.6.min.js"></script>
+   <script type="text/javascript" src="../resources/js/bootstrap-popup.min.js"></script>
+   
+   	<script type="text/javascript" src="../resources/js/jquery-ui-1.10.4.min.js"></script>
+  	<script type="text/javascript" src="../resources/js/jquery.sessionTimeout.js"></script>
+   
+ 
+</head>
+
+<body onload="return developerStatus();" style="background-color: #ffc080;">
+    <!-- Toast modal -->
+
+    <h1>jQuery Bootstrap-popup Plugin Demos</h1>
+   
+    <button id="J_Toast" type="button" class="btn btn-primary" data-toggle="modal">Toast</button>
+    <button id="J_Confirm" type="button" class="btn btn-primary" data-toggle="modal">Confirm</button>
+    <button id="J_Prompt" type="button" class="btn btn-primary" data-toggle="modal">Prompt</button>
+    <button id="J_Custom" type="button" class="btn btn-primary" data-toggle="modal">Custom</button>
+
+    <!--Third-party-->
+     <script type="text/javascript">
+     
+     sessionTimeOUT('../sessionRedir');
+     
+     function developerStatus(){
+    		$.ajax({	
+    		    type: "GET",
+    		    url: "../displyUserOnHeader",
+    		    cache : false,
+    			dataType : "json",
+    		    data: { dle_Id: "23"}, // parameters
+    			success : function(response) {
+    				//alert(response);
+    				if(response === "naagu@gmail.com"){
+    					alert("welcome to developers");
+    				}else{
+    					alert("Only for developers");
+    					window.open("../homePage", "_self");
+    				}    				
+    			},
+    			error : function(response, status, er) {
+    				alert("error: " + response + " status: " + status+ " er:" + er);		
+    			}
+    		});
+    	}
+
+        $('#J_Toast').click(function() {
+            $.bs.popup.toast({
+                title: 'Title',
+                info: 'This is a toast.'
+            }, function(dialogE) {
+                var modalBody = dialogE.find('.modal-body');
+                modalBody.append('<p class="countdown"></p>');
+                var cd = modalBody.find('.countdown'),
+                    i = 3;
+                cd.html('It would be disappeared in ' + i + 's by default.');
+                setInterval(function() {
+                    i -= 1;
+                    cd.html('It would be disappeared in ' + i + 's by default.');
+                }, 1000);
+            });
+        });
+        
+        
+		 $.bs.popup.custom({
+             title: 'Title',
+             dom: '<div class="custom"><h1>This is a custom DOM.</h1></div>',
+             width: '200px'
+         }, function(dialogE) {                         	
+                 dialogE.modal('hide');
+                 alert("--------");            
+         });
+		 
+        $('#J_Confirm').click(function() {
+            $.bs.popup.confirm({
+                title: 'Title',
+                info: 'Do you want confirm?'
+            }, function(dialogE) {
+                alert('You are confirmed.');
+                dialogE.modal('hide');
+            });
+        });
+
+        $('#J_Prompt').click(function() {
+            $.bs.popup.prompt({
+                title: 'Title',
+                info: 'Input your name, please.'
+            }, function(dialogE, message) {
+                // nested toast
+                $.bs.popup.toast({
+                    title: 'Title',
+                    info: 'You are input: ' + message
+                }, function() {
+                    dialogE.modal('hide');
+                });
+            });
+        });
+
+        $('#J_Custom').click(function() {
+            $.bs.popup.custom({
+                title: 'Title',
+                dom: '<div class="custom"><h1>This is a custom DOM.</h1></div>',
+                width: '200px'
+            }, function(dialogE) {
+                
+                    dialogE.modal('hide');
+               
+            });
+        });
+
+        </script>
+    
+</body>
+
+</html>

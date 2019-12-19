@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+       <class name="com.vktechnology.naagu.models.Debit"  table="debit">
+              <id name="Id" column="Id">
+                     <generator class="assigned"></generator>
+              </id>
+
+              <property name="debit_Date" column="Debit_Date"></property>
+              <property name="debit_Name" column="Debit_Name"></property>
+              <property name="debit_Amount" column="Debit_Amount"></property>
+              <property name="debit_Source" column="Debit_Source"></property>
+              <property name="debit_Description" column="Debit_Description"></property>
+              <property name="user" column="User"></property>
+
+       </class>
+
+</hibernate-mapping>

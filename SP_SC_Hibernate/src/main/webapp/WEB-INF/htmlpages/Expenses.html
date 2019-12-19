@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>FlowOfMoney</title>
+
+<link rel="import" href="menu">
+
+<link href="../resources/css/tableStyles.css" rel="Stylesheet" type="text/css" />
+<link href="../resources/css/smoothness-jquery-ui.css" rel="Stylesheet" type="text/css" />
+
+<link href="../resources/css/expensesStyle.css" rel="Stylesheet" type="text/css" />
+<link href="../resources/css/BootstrapPagination.min.css" rel="Stylesheet" type="text/css" />
+<script type="text/javascript" src="../resources/js/jquery-1.12.0.min.js"></script>
+<!-- for auto fill -->
+<link href="../resources/css/smoothness-jquery-ui.css" rel="Stylesheet" type="text/css" />
+<script type="text/javascript" src="../resources/js/jquery-ui-1.10.4.min.js"></script>
+<!-- start calender -->
+<link href="../resources/css/boots-combinedExpens.min.css" rel="Stylesheet" type="text/css" />
+<link href="../resources/css/bootstrap-datetimepicker.min.css" rel="Stylesheet" type="text/css" />
+<script type="text/javascript" src="../resources/js/bootstrap-3.3.6.min.js"></script>
+<script type="text/javascript" src="../resources/js/Bootstrap-datepicker.min.js"></script>
+<!-- toastmessage -->
+<link href="../resources/css/jquery.toastmessage.css" rel="Stylesheet" type="text/css" />
+<script type="text/javascript" src="../resources/js/jquery.toastmessage-min.js"></script>
+<script type="text/javascript" src="../resources/js/commonFunctions.js"></script>
+<script type="text/javascript" src="../resources/js/englishWords.js"></script>
+
+  <script type="text/javascript" src="../resources/js/jquery.sessionTimeout.js"></script>
+    
+
+<script type="text/javascript">
+
+	sessionTimeOUT('../sessionRedir');
+
+    function showSuccessToast() {
+        $().toastmessage('showSuccessToast', "Available sufficient money");
+    }
+    function showStickySuccessToast() {
+        $().toastmessage('showToast', {
+            text     : 'Success Dialog which is sticky',
+            sticky   : true,
+            position : 'top-right',
+            type     : 'success',
+            closeText: '',
+            close    : function () {
+                console.log("toast is closed ...");
+            }
+        });
+
+    }
+    function showStickySelectToast() {
+        $().toastmessage('showToast', {
+            text     : 'Please select Source',
+            sticky   : false,
+            position : 'top-right',
+            type     : 'error',
+            closeText: '',
+            close    : function () {
+                console.log("toast is closed ...");
+            }
+        });
+
+    }
+    function showAjaxErrorToast() {
+        $().toastmessage('showToast', {
+            text     : 'No object recived from controller or ajax error.',
+            sticky   : false,
+            position : 'top-right',
+            type     : 'error',
+            closeText: '',
+            close    : function () {
+                console.log("toast is closed ...");
+            }
+        });
+
+    }
+
+    function showNoticeToast() {
+        $().toastmessage('showNoticeToast', "Notice  Dialog which is fading away ...");
+    }
+    function showStickyNoticeToast() {
+        $().toastmessage('showToast', {
+             text     : 'Notice Dialog which is sticky',
+             sticky   : true,
+             position : 'top-right',
+             type     : 'notice',
+             closeText: '',
+             close    : function () {console.log("toast is closed ...");}
+        });
+    }
+    function showWarningToast() {
+        $().toastmessage('showWarningToast', "Warning Dialog which is fading away ...");
+    }
+    function showStickyWarningToast() {
+        $().toastmessage('showToast', {
+            text     : 'Warning Dialog which is sticky',
+            sticky   : true,
+            position : 'top-right',
+            type     : 'warning',
+            closeText: '',
+            close    : function () {
+                console.log("toast is closed ...");
+            }
+        });
+    }
+    function showErrorToast() {
+        $().toastmessage('showErrorToast', "There is not available sufficient money");
+    }
+    function showStickyErrorToast() {
+        $().toastmessage('showToast', {
+            text     : 'There is not available sufficient money',
+            sticky   : true,
+            position : 'top-right',
+            type     : 'error',
+            closeText: '',
+            close    : function () {
+                console.log("toast is closed ...");
+            }
+        });
+    }
+
+	function hidef() {
+
+		//madeAjaxCall();
+	}
+	var d = new Date();
+	//alert(d.getMonth()+"/"+d.getDay()+"/"+d.getFullYear());
+	var day = d.getDate();
+	var month = d.getMonth();
+	var year = d.getFullYear();
+	var full = (++month)+"/"+(day)+"/"+year;
+	 //document.getElementById('Date').value = (new Date()).format("m/dd/yy");
+	function madeAjaxCall(online_type) {
+		//alert(online_type);
+		$.ajax({
+					url : "../ListByOnlineType",
+					type : "GET",
+					cache : false,
+					dataType : "json",
+					data: { OnlineType: online_type},
+					success : function(response) {
+						// you could use the result.values dictionary here
+						var obj = response;
+						$(".child_selection").empty();
+						$(".child_selection").append("<option value='select' selected='selected'>Select</option>");
+						$.each(obj, function(key, name1) { //populate child options							
+							$(".child_selection").append("<option value=\""+name1+"\">" + name1	+ "</option>");
+						});
+
+					},
+					error : function(response, status, er) {
+						alert("error: " + response + " status: " + status
+								+ " er:" + er);
+					}
+				});
+
+	}
+
+
+	function sendbackTwo() {
+		window.open("../expensesList", "_self");
+	}
+
+	$(function() {
+		var availableTags = [ "Ticket", "Travelling", "Food", "Tea", "Movie", "Internet", "Mobile", "Vehicle", "Electronics",
+			"Etc", "Arnaments", "Clothes", "Books", "Wood", "Jym", "Paper", "Tv", "Hospital", "Bill", "Donate", "Medicine", "Job", "Rent",
+			"accessories","Clearence","Wine","Lose"];
+		
+		var unitNameTags = ["Fruit", "Tea", "Non-veg", "Ticket", "Vegitables", "Rice", "Shorts", "Ice", "CoolDrinks",
+		                    "Biryani", "Shampo", "Train", "Bus", "taxi", "Auto", "Mobile"];
+		
+		
+		$("#unitTypeAuto").autocomplete({
+			source : availableTags
+		});
+		
+		$("#unitNameTagAuto").autocomplete({
+			source : unitNameTags
+		});
+		
+	});
+
+<!-- end calender  -->
+
+
+
+	$(document).ready(
+			function() {
+
+				//let's create arrays
+				var cash = [ {
+					display : "Pocket",
+					value : "pocket"
+				}, {
+					display : "money",
+					value : "money"
+				}, {
+					display : "White chocolate",
+					value : "white-chocolate"
+				}, {
+					display : "Gianduja chocolate",
+					value : "gianduja-chocolate"
+				} ];
+
+				var debitcard = [ {
+					display : "Syndicate Bank",
+					value : "SyndicateBank"
+				}, {
+					display : "SBI",
+					value : "SBI"
+				}, {
+					display : "SBH",
+					value : "SBH"
+				}, {
+					display : "ICICI",
+					value : "ICICI"
+				} ];
+
+				var creditcard = [ {
+					display : "visa",
+					value : "visa"
+				}, {
+					display : "SBI",
+					value : "SBI"
+				}, {
+					display : "ICICI",
+					value : "ICICI"
+				}, {
+					display : "HDFC",
+					value : "HDFC"
+				} ];
+
+				var check = [
+
+				{
+					display : "Check",
+					value : "check"
+				} ];
+
+				//If parent option is changed
+				$("#parent_selection").change(function() {
+					var parent = $(this).val(); //get option value from parent
+
+					switch (parent) { //using switch compare selected option and populate child
+					case 'cash':
+						list(cash);
+						break;
+					case 'debitcard':
+						list(debitcard);
+						break;
+					case 'creditcard':
+						list(creditcard);
+						break;
+					case 'check':
+						list(check);
+						break;
+					default: //default child option is blank
+						$("#child_selection").html('');
+						break;
+					}
+				});
+
+				//function to populate child select box
+				function list(array_list) {
+					$("#child_selection").html(""); //reset child options
+					$(array_list).each(
+							function(i) { //populate child options
+								$("#child_selection").append(
+										"<option value=\""+array_list[i].value+"\">"
+												+ array_list[i].display
+												+ "</option>");
+							});
+				}
+
+			});
+
+
+
+$(document).ready(function(){
+    var formSubCon1 = "";
+    var checking ="";
+    var selectValue;
+    $('#selsource').on('change', function() {
+    selectValue = $(this).val();
+  	  var value = $(this).val();
+  	  var amount = $("#Amount").val();
+  	  if(amount == "" || amount < 1){
+  		$().toastmessage('showErrorToast', "Amount should be more than 1 or equall.");
+  	  }else if(value === "select"){
+			showStickySelectToast();
+		}else{
+			$.ajax({
+		        type: "GET",
+		        url: "../amountAvailability",
+		        cache : false,
+				dataType : "json",
+		        data: { source: value, amount: amount }, // parameters
+					success : function(response) {
+						// you could use the result.values dictionary here
+						 
+						obj = response;
+						formSubCon1 = obj;
+						//alert("222 "+formSubCon1);
+						if(formSubCon1 === "Success"){
+							showSuccessToast();
+						}else if(formSubCon1 === "SuccessCredit"){
+							$().toastmessage('showSuccessToast', "Your amount will add to credit.");
+						}else{
+							showErrorToast();
+						}
+					},
+					error : function(response, status, er) {
+						showAjaxErrorToast();
+					}
+		    
+		   });
+    }
+	});
+   
+    function formAjaxSubmit(){
+    	
+    	
+    }
+
+    
+    $("form").submit(function(e){
+    	var ajaxMessage = "";
+    	 var numberReg = /^[0-9.]{0,11}$/;
+    	 var characterReg = /^[a-zA-Z0-9., -]{0,100}$/;
+    	 var characterRegHuge = /^[a-zA-Z0-9., -]{0,200}$/;
+    	 var onlyNumerics = /^\d*[0-9](|.\d*[0-9]|,\d*[0-9])?$/;
+    	if($("#Date").val() === ""){
+    	    $().toastmessage('showErrorToast', "Please enter date");
+    	    e.preventDefault(e);
+    	}else if(!characterReg.test($("#unitTypeAuto").val())){
+    		$().toastmessage('showErrorToast', "Unit type length should be below 100, use {0-9a-zA-Z,. -}");
+	        e.preventDefault(e);
+		}else if($("#unitNameAuto").val() === ""){
+    		$().toastmessage('showErrorToast', "Please enter unit name");
+	        e.preventDefault(e);
+		}else if(!characterReg.test($("#unitNameAuto").val())){
+    		$().toastmessage('showErrorToast', "Unit name length should be below 100, use {0-9a-zA-Z,. -}");
+	        e.preventDefault(e);
+		}else if(!characterReg.test($("#unitNameTagAuto").val())){
+    		$().toastmessage('showErrorToast', "Tag length should be below 100, use {0-9a-zA-Z,. -}");
+	        e.preventDefault(e);
+		}else if(!numberReg.test($("#Unit_price").val())) {
+    		$().toastmessage('showErrorToast', "unit price should be in Numeric and length below 11 including Decimal");
+    	    e.preventDefault(e);
+    	}else if(!characterReg.test($("#Quantity").val())){
+    		$().toastmessage('showErrorToast', "Quantity should be below 100, use {0-9a-zA-Z,. -}");
+	        e.preventDefault(e);
+		}else if($("#Amount").val() === ""){
+    		$().toastmessage('showErrorToast', "Please enter amount");
+	        e.preventDefault(e);
+		}else if($("#Amount").val() < 1  || $("#Amount").val() == 0){
+	  		$().toastmessage('showErrorToast', "Amount should be more than 1 or equall.");
+	  		e.preventDefault(e);
+	  	}else if(!numberReg.test($("#Amount").val())) {
+    		$().toastmessage('showErrorToast', "Amount should be in Numeric  and length below 11");
+    	    e.preventDefault(e);
+    	}else if($("#Amount").val() > 9000000000) {
+    		$().toastmessage('showErrorToast', "Amount should be less than 9000000000");
+    	    e.preventDefault(e);
+    	}else if($("#selsource").val() === "select"){
+			$().toastmessage('showErrorToast', "Please select source");
+    	    e.preventDefault(e);
+    	}else if(!characterReg.test($("#Sold_company").val())){
+    		$().toastmessage('showErrorToast', "Company length should be below 100, use {0-9a-zA-Z,. -}");
+	        e.preventDefault(e);
+		}else if(!characterReg.test($("#Area").val())){
+    		$().toastmessage('showErrorToast', "Area length should be below 100, use {0-9a-zA-Z,. -}");
+	        e.preventDefault(e);
+		}else if(!characterReg.test($("#Whome_to").val())){
+    		$().toastmessage('showErrorToast', "Whome-to length should be below 100, use {0-9a-zA-Z,.}");
+	        e.preventDefault(e);
+		}else if(!characterRegHuge.test($("#Description").val())){
+    		$().toastmessage('showErrorToast', "Description length should be below 200, use {0-9a-zA-Z,. -}");
+	        e.preventDefault(e);
+		}else if(formSubCon1 === "Error"){
+      		 	showErrorToast();
+        		e.preventDefault(e);
+    	}else{
+    		e.preventDefault(e);
+    		var Date = $("#Date").val();
+        	var unitTypeAuto = $("#unitTypeAuto").val();
+        	var unitNameAuto = $("#unitNameAuto").val();
+        	var unitNameTagAuto = $("#unitNameTagAuto").val();
+        	var Unit_price = $("#Unit_price").val();
+        	if(Unit_price == null || Unit_price < 0 || Unit_price === ""){
+        		Unit_price = 0;
+        	}
+        	var Quantity = $("#Quantity").val();
+        	var Amount = $("#Amount").val();
+        	var Select = $("#selsource").val();
+        	var Sold_company = $("#Sold_company").val();
+        	var Area = $("#Area").val();
+        	var Whome_to = $("#Whome_to").val();
+        	var Description = $("#Description").val();
+        	
+        	$.ajax({
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                type: $("form").attr("method"),
+                url:  $("form").attr("action"),
+                data: {Date:Date, unitType:unitTypeAuto, unitName:unitNameAuto, unitNameTag:unitNameTagAuto, Unit_price:Unit_price, Quantity:Quantity,
+                	Amount:Amount, Sold_company:Sold_company, Area:Area, Whome_to:Whome_to, Description:Description, Select: Select},
+                	
+                success : function(response){
+                	ajaxMessage = response;
+                	if(response === "SuccessHolder"){
+                		// alert("---suu---"+response);
+                		$("form")[0].reset();
+                		$().toastmessage('showSuccessToast', "Successfully Save & deduct from Holder.");
+                	}else if(response === "SuccessCredit"){
+                		$("form")[0].reset();
+                		$().toastmessage('showSuccessToast', "Successfully Save & add to selected Crediter.");
+                	}else if(response === "Error"){
+                		$().toastmessage('showErrorToast', "Save Unsuccessfull");
+                	}else if(response === "ErrorAmountLess"){
+                		$().toastmessage('showErrorToast', "Save Unsuccessfull. Because there is no amount");
+                	}
+                },
+                error: function (re) {
+                	$().toastmessage('showErrorToast', "Error in Ajax form");
+                }
+            });
+        	
+    		
+
+    	}
+    	ajaxMessage = "";
+    });
+    formSubCon1 = "";
+    
+});
+
+$(document).ready(function(){
+$('#datetimepicker').datetimepicker({
+    format: 'MM/dd/yyyy hh:mm:ss',
+    language: 'en'
+});
+});
+</script>
+<script>
+  $( function() {
+    
+	  var NameTags1 = ["Banana", "Apple", "Mirchi", "Black Tea", "Lemon", "Rice", "Orange", "Green Tea", "Chai", "Milk",
+		                "Palakura", "sari", "Ice cream", "Chicken", "Mutton", "booti", "goat head", "Dall", "H&D", "Meera",
+		                "Onion", "MenThem", "Eggs", "mmts", "passenger", "Metro", "Express", "Recharge", "Repaire", "Purchase",
+		                "Tablets", "Fee", "Petrol", "Deisel", "Bus", "Car"];
+    
+    function split( val ) {
+      return val.split( /,\s*/ );
+    }
+    function extractLast( term ) {
+      return split( term ).pop();
+    }
+ 
+    $( "#unitNameAuto" )
+      // don't navigate away from the field on tab when selecting an item
+      .on( "keydown", function( event ) {
+        if ( event.keyCode === $.ui.keyCode.TAB &&
+            $( this ).autocomplete( "instance" ).menu.active ) {
+          event.preventDefault();
+        }
+      })
+      .autocomplete({
+        minLength: 3,
+        source: function( request, response ) {
+          // delegate back to autocomplete, but extract the last term
+          response( $.ui.autocomplete.filter(
+        		  ItemNameTags, extractLast( request.term ) ) );
+        },
+        focus: function() {
+          // prevent value inserted on focus
+          return false;
+        },
+        select: function( event, ui ) {
+          var terms = split( this.value );
+          // remove the current input
+          terms.pop();
+          // add the selected item
+          terms.push( ui.item.value );
+          // add placeholder to get the comma-and-space at the end
+          terms.push( "" );
+          this.value = terms.join( ", " );
+          return false;
+        }
+      });
+    
+    $( "#unitTypeAuto" )
+    // don't navigate away from the field on tab when selecting an item
+    .on( "keydown", function( event ) {
+      if ( event.keyCode === $.ui.keyCode.TAB &&
+          $( this ).autocomplete( "instance" ).menu.active ) {
+        event.preventDefault();
+      }
+    })
+    .autocomplete({
+      minLength: 3,
+      source: function( request, response ) {
+        // delegate back to autocomplete, but extract the last term
+        response( $.ui.autocomplete.filter(
+      		  ItemNameTags, extractLast( request.term ) ) );
+      },
+      focus: function() {
+        // prevent value inserted on focus
+        return false;
+      },
+      select: function( event, ui ) {
+        var terms = split( this.value );
+        // remove the current input
+        terms.pop();
+        // add the selected item
+        terms.push( ui.item.value );
+        // add placeholder to get the comma-and-space at the end
+        terms.push( "" );
+        this.value = terms.join( "" );
+        return false;
+      }
+    });
+  } );
+  
+  $(document).ready(function() {  
+  $("#AmountType").change(function() {
+	 
+	  var parent = $(this).val(); //get option value from parent amount type
+	  var online_type;
+      switch(parent){ //using switch compare selected option and populate child
+            case 'Cash':
+            	online_type = "Cash";
+            	madeAjaxCall(online_type);
+              break;
+            case 'Debit_Card':
+            	online_type = "Debit_Card";
+            	madeAjaxCall(online_type);
+              break; 
+            case 'Credit_Card':
+            	online_type = "Credit_Card";
+            	madeAjaxCall(online_type);
+              break;
+            case 'Netbanking':
+            	online_type = "Netbanking";
+            	madeAjaxCall(online_type);
+              break;
+            case 'Wallet':
+            	online_type = "Wallet";
+            	madeAjaxCall(online_type);
+              break;
+            case 'Check':
+            	online_type = "Check";
+            	madeAjaxCall(online_type);
+              break;            	
+          default: //default child option is blank
+        	  $(".child_selection").html('');  
+              break;
+         }
+  });
+  });
+  </script>
+</head>
+<body onload="return hidef();">
+	<div style="text-align: center; margin-top: 20px;">
+		<Strong>Expenses</Strong>
+<div style="text-align: center; margin-top: 20px;">
+		<form action="../addExpenses" method="get">
+			<table style="padding-left:45px;width: 50%; margin: 0px auto;" class="">
+				<tr><th>Date*</th><th>Category</th></tr>
+							<tr>
+								<td>
+									<div id="datetimepicker" class="input-append date">
+										<input type="text" name="Date" id="Date" /> 
+										<span class="add-on"> 
+											<i	data-time-icon="icon-time"  data-date-icon="icon-calendar"></i>
+										</span>
+									</div>
+								</td>
+								<td>									
+									<div class="ui-widget">
+  											<input type="text" name="Unit_Type" id="unitTypeAuto"  />
+									</div>
+								</td>
+							</tr>
+							<tr><th>Name*</th><th>Tag</th></tr>	
+							<tr>
+								<td>
+									<div class="ui-widget">
+  											<input type="text" name="Unit_Name" id="unitNameAuto"  />
+									</div>								
+								</td>
+								<td><input type="text" name="Unit_Tag" id="unitNameTagAuto" /></td>
+							</tr>
+							<tr><th>Price</th><th>Quantity</th></tr>
+							<tr>
+								<td><input type="text" name="Unit_price" id="Unit_price" /></td>
+								<td><input type="text" name="Quantity" id="Quantity" /></td>
+							</tr>
+							<tr><th>Amount*</th><th>Whome</th></tr>
+							<tr>
+								<td><input type="text" name="Amount" id="Amount" /></td>
+								<td><input type="text" name="Whome_to" id="Whome_to" value="me"/></td>
+								
+							</tr>
+							<tr><th>Amount type*</th><th>Source*</th></tr>
+							<tr>
+								<td><select name="AmountType" id="AmountType">
+								<option value="">-- Please Select --</option>
+    							<option value="Cash">Cash</option>
+    							<option value="Debit_Card">Debit Card</option>
+    							<option value="Credit_Card">Credit Card</option>
+    							<option value="Netbanking">Netbanking</option>
+    							<option value="Wallet">Wallet</option>
+    							<option value="Check">Check</option>
+    							</select></td>
+    							
+								<td><select name="Source_Name" class="child_selection" id="selsource">
+										
+									</select></td>
+								
+							</tr>
+							<tr><th>Sold Company</th><th>Area</th></tr>
+							<tr>
+							<td><input type="text" name="Sold_company" id="Sold_company"  /></td>
+							<td><input type="text" name="Area" id="Area"  /></td>
+							</tr>
+								<input type="hidden" name="User" value="null" />
+							<tr><th>Description</th><th></th></tr>
+							
+						</table>
+						<div class="textArea"><textarea name="Description" id="Description"></textarea></div>
+		
+		<table style="width: 100%;">
+						<tr>
+								
+								<td style="text-align: center;"><button type="submit" class="BlueBtn BlueBtn-primary">Save</button>&nbsp;|&nbsp;
+									<button type="button" class="BlueBtn BlueBtn-primary" onclick="return sendbackTwo();">Cancel</button>
+								</td>
+							</tr>
+						</table>
+		</form>
+	</div></div>
+</body>
+</html>

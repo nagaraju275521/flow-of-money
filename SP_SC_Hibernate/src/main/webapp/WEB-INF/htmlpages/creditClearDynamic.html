@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title></title>
+
+<link href="../resources/css/pageStyle.css" rel="Stylesheet" type="text/css" />
+<link href="../resources/css/tableStyles.css" rel="Stylesheet" type="text/css" />
+<!-- <link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css" /> -->
+<link href="../resources/css/smoothness-jquery-ui.css" rel="Stylesheet" type="text/css" />
+<link href="../resources/css/paginationForExpense.min.css" rel="Stylesheet" type="text/css" />
+
+<script type="text/javascript" src="../resources/js/jquery-1.11.3.min.js"></script>
+<!-- <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script> -->
+<script type="text/javascript" src="../resources/js/jquery-ui-1.10.4.min.js"></script>
+
+<script type="text/javascript" src="../resources/js/creditClearDynamicView.js"></script>
+<script type="text/javascript" src="../resources/js/commonFunctions.js"></script>
+
+<link href="../resources/css/bootstrap-combined.min.css" rel="Stylesheet" type="text/css" />
+<link href="../resources/css/bootstrap-datetimepicker.min.css" rel="Stylesheet" type="text/css" />
+<script type="text/javascript" src="../resources/js/Bootstrap-datepicker.min.js"></script>
+
+<link href="../resources/css/jquery.toastmessage.css" rel="Stylesheet" type="text/css" />
+<script type="text/javascript" src="../resources/js/jquery.toastmessage-min.js"></script>
+    
+
+<script type="text/javascript" src="../resources/js/bootstrap-3.3.6.min.js"></script>
+<script type="text/javascript" src="../resources/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../resources/js/bootstrap-popup.min.js"></script>
+<script type="text/javascript" src="../resources/js/jquery.sessionTimeout.js"></script>
+<script type="text/javascript">
+	sessionTimeOUT('../sessionRedir');
+</script>   
+</head>
+<body onload="return hidef();">
+
+	<h2>Credit Clearence</h2>
+	
+	<form action="../saveCredtClearDynamic" method="get" id="formCreditClear">
+
+		<table class="formTable">
+			<tr>
+				<th>Date</th>
+				<td>
+					<div id="datetimepickerCCD" class="input-append date">
+						<input type="text" name="CreditClearDate"  id="Credit_ClearDate" /> 
+						<span class="add-on"> 
+						<i	data-time-icon="icon-time"  data-date-icon="icon-calendar"></i>
+						</span>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<th>Crediter Name</th>
+				<td>
+				<select name="Credit_ClearName" id="Credit_ClearName" class="child_selection">
+							<option value="select" selected>select</option>
+				</select>			
+				</td>
+			</tr>
+			<tr>
+				<th>Amount</th>
+				<td><input type="text" name="Credit_ClearAmount" id="Credit_ClearAmount" /></td>
+			</tr>
+			<tr>
+				<th>Source</th>
+				<td><select name="Credit_ClearSource" id="Credit_ClearSource" class="sourceList">
+							<option value="select" selected>select</option>
+				</select></td>
+			</tr>
+			<tr>
+				<th>Description</th>
+				<td><textarea name="Credit_ClearDes" id="Credit_ClearDes"></textarea></td>
+			</tr>
+
+
+			<tr>
+				<th></th>
+				<td>
+					<button type="submit" class="BlueBtn BlueBtn-primary">Save</button>&nbsp;|
+					<button type="button" class="BlueBtn BlueBtn-primary" onclick="window.history.back();">Cancel</button>
+				</td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>

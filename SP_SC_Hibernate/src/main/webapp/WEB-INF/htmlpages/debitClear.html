@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title></title>
+<link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+<link href="../resources/css/pageStyle.css" rel="Stylesheet" type="text/css" />
+<!-- <link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css" /> -->
+<link href="../resources/css/smoothness-jquery-ui.css" rel="Stylesheet" type="text/css" />
+<link href="../resources/css/bootstrap-combined.min.css" rel="Stylesheet" type="text/css" />
+
+<script type="text/javascript" src="../resources/js/jquery-1.11.3.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+
+<script type="text/javascript" src="../resources/js/jquery.weekpicker.js"></script>
+<link href="../resources/css/jquery.toastmessage.css" rel="Stylesheet" type="text/css" />
+<script type="text/javascript" src="../resources/js/jquery.toastmessage-min.js"></script>
+    
+<script type="text/javascript" src="../resources/js/creditClearDynamicView.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){	
+	$("#formCreditClear").submit(function(e){
+		 var numberReg = /^[0-9.]{0,11}$/;
+      	 var characterReg = /^[a-zA-Z0-9., -]{0,150}$/;
+      	 var characterRegInp = /^[a-zA-Z0-9]{0,100}$/;
+      	 var onlyNumerics = /^\d*[0-9](|.\d*[0-9]|,\d*[0-9])?$/;
+      		if($("#Credit_ClearDate").val() === ""){
+      		$().toastmessage('showErrorToast', "Please enter Date");
+   	    	e.preventDefault(e);
+      		}else if($("#Credit_ClearName").val() === ""){
+   				$().toastmessage('showErrorToast', "Please enter debiter name");
+   				e.preventDefault(e);
+   			}else if($("#Credit_ClearName").val() === "select") {
+   	    		$().toastmessage('showErrorToast', "Please select Credit Clear Name");
+   	    	    e.preventDefault(e);
+   	    	}else if($("#Credit_ClearAmount").val() === "" || $("#Credit_ClearAmount").val() === null){
+   	   			$().toastmessage('showErrorToast', "Please enter amount");
+   	   	    	e.preventDefault(e);
+   	   		}else if(!numberReg.test($("#Credit_ClearAmount").val())) {
+   	    		$().toastmessage('showErrorToast', "Amount should be in Numeric  and length below 11");
+   	    	    e.preventDefault(e);
+   	    	}else if($("#Credit_ClearAmount").val() > 9999999) {
+   	    		$().toastmessage('showErrorToast', "Amount should be less than 9999999");
+   	    	    e.preventDefault(e);
+   	    	}else if($("#Credit_ClearAmount").val() < 1) {
+   	    		$().toastmessage('showErrorToast', "Amount should be greter than or equall 1");
+   	    	    e.preventDefault(e);
+   	    	}else if($("#Credit_ClearSource").val() === "select") {
+   	    		$().toastmessage('showErrorToast', "Please select source");
+   	    	    e.preventDefault(e);
+   	    	}else if(!characterReg.test($("#Credit_ClearDes").val())){
+   	    		$().toastmessage('showErrorToast', "Description length should be below 100, use {0-9a-zA-Z,. -}");
+   		        e.preventDefault(e);
+   			}else{
+   	    		e.preventDefault(e);
+   	    		var Credit_ClearDate = $("#Credit_ClearDate").val();
+   	        	var inputname = $("#Credit_ClearName").val();
+   	        	var Credit_ClearAmount = $("#Credit_ClearAmount").val();
+   	        	var Credit_ClearSource = $("#Credit_ClearSource").val();
+   	        	var Credit_ClearDes = $("#Credit_ClearDes").val();
+   	        	
+   	        	$.ajax({
+   	                contentType: "application/json; charset=utf-8",
+   	                dataType: "json",
+   	                type: $("#formCreditClear").attr("method"),
+   	                url:  $("#formCreditClear").attr("action"),
+   	                data:{Credit_ClearDate: Credit_ClearDate, CreditClear_name: inputname, Credit_ClearAmount: Credit_ClearAmount, Credit_ClearSource: Credit_ClearSource, Credit_ClearDes: Credit_ClearDes}, 
+   	                success : function(response){
+   	                	//alert(response);
+   	                	if(response === "SuccessCredit"){
+   	                		$().toastmessage('showSuccessToast', "Successfully update credit");
+   	                	}else if(response === "SuccessHolder"){
+   	                		$().toastmessage('showSuccessToast', "Successfully update holder");
+   	                	}else{
+   	                		$().toastmessage('showErrorToast', "Error");
+   	                	}
+   	                },
+   	                error: function (re) {
+   	                	$().toastmessage('showErrorToast', "Error in Ajax form :"+re);
+   	                }
+   	            });
+   			}
+   			
+    });	
+});	
+</script>
+</head>
+<body onload="return hidef();">
+
+	<h2 style="text-align: center;">Debit Clearence As Dynamically</h2>
+	
+	<form action="../saveCredtClearDynamic" method="get" id="formCreditClear">
+
+		<table style="margin: auto;">
+			<tr>
+				<th>Date</th>
+				<td><input type="text" name="ClearDebitDate" class="week-picker" id="Credit_ClearDate">
+			</tr>
+			<tr>
+				<th>Crediter Name</th>
+				<td>
+				<select name="Debit_ClearName" id="Credit_ClearName" class="child_selection">
+							<option value="select" selected>select</option>
+				</select>			
+				</td>
+			</tr>
+			<tr>
+				<th>Amount</th>
+				<td><input type="text" name="Debit_ClearAmount" id="Credit_ClearAmount" /></td>
+			</tr>
+			<tr>
+				<th>Source</th>
+				<td><select name="Debit_ClearSource" id="Credit_ClearSource" class="sourceList">
+							<option value="select" selected>select</option>
+				</select></td>
+			</tr>
+			<tr>
+				<th>Description</th>
+				<td><textarea name="Debit_ClearDes" id="Credit_ClearDes"></textarea></td>
+			</tr>
+
+
+			<tr>
+				<th></th>
+				<td>
+					<button type="submit" class="btn btn-primary">Save</button>&nbsp;|
+					<button type="button" class="btn btn-primary" onclick="window.history.back();">Cancel</button>
+				</td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>

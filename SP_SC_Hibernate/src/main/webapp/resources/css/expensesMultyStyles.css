@@ -1,0 +1,124 @@
+body {
+	background-color: #ffc080;
+}
+h2{
+	color: black;
+	font-size: 21px;
+	text-shadow: 0 1px 2px #BAB8B8;
+	
+}
+
+#register-form {
+	margin-top: 0px;
+
+}
+
+.select {
+	margin-left: 10px;
+	margin-bottom: 10px;
+	margin-top: 10px;
+}
+select{
+	width: 204px;
+	height: 21px;
+border: 1px solid #ff6820;
+}
+input {
+	font-size:12px;
+	font-family: Arial, Helvetica, sans-serif;
+	width: 200px;
+	height: 21px;
+	border: 1px solid #ff6820;
+	-moz-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+	box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+	
+}
+
+input:focus,textarea:focus {
+	border: 1px solid #09C;
+	-moz-box-shadow: 0px 0px 8px blue;
+	box-shadow: 0px 0px 14px blue;
+}
+strong{
+	font-size: 18px;
+	font-family: Tahoma, Geneva, sans-serif;
+}
+textarea {
+	width:200px;
+	height: 40px;
+	font-size:15px;
+	font-family: Arial, Helvetica, sans-serif;
+	padding: 0px;
+	border: 1px solid #ff6820;
+	-moz-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+	box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+	color: green;
+}
+
+button {
+	width: 123px;
+	margin-left: 0px;
+	background: gray;
+	color: #fff;
+	font-family: Tahoma, Geneva, sans-serif;
+	height: 30px;
+	-webkit-border-radius: 15px;
+	-moz-border-radius: 15px;
+	border-radius: 5px;
+	border: 1px solid #999;
+}
+
+button:hover {
+	background: #fff;
+	color: #09C;
+}
+
+table th {
+	padding: 0px;
+	text-align:left;
+	font-size:13px;
+	font-family: Tahoma, Geneva, sans-serif;
+	
+}
+table td{
+	padding: 0px;
+	width: 100%;
+}
+.aaa {
+	color: #FB3A3A;
+	display: block;
+	padding: 10px;
+	text-align: left;
+	width: 290px;
+}
+
+.errorE {
+	color: #FB3A3A;
+	display: block;
+	padding: 0px;
+	text-align: left;
+	width: 290px;
+}
+
+.formContent {
+	
+	background-color: white;
+	padding: 15px;
+	width: 300px;
+	height: 350px;
+	
+	
+	
+}
+.formContent1 {
+	
+	background-color: white;
+	padding: 15px;
+	width: 200px;
+	height: 350px;
+	
+	
+	
+}
+		
+

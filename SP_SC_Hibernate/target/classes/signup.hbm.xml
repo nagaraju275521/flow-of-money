@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+          "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+          "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+          <hibernate-mapping>
+          <class name="com.vktechnology.naagu.models.Signup"  table="signup">
+              <id name="id" column="Id">
+                  <generator class="assigned"></generator>
+              </id>
+
+              <property name="first_Name" column="first_Name"></property>
+          <property name="last_Name" column="last_Name"></property>
+              <property name="email" column="email"></property>
+              <property name="password" column="Password"></property>
+          </class>
+          
+          </hibernate-mapping>

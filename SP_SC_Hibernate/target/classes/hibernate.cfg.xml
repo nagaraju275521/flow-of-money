@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+    "-//Hibernate/Hibernate Configuration DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+ 
+<hibernate-configuration>
+    <session-factory>
+        
+        <mapping resource="signup.hbm.xml" />
+        <mapping resource="expenses.hbm.xml" />
+        <mapping resource="source.hbm.xml" />
+        <mapping resource="credit.hbm.xml" />
+        <mapping resource="debit.hbm.xml" />
+        <mapping class="com.vktechnology.naagu.models.Holder" />
+        <mapping class="com.vktechnology.naagu.models.HolderRecord" />
+        <mapping class="com.vktechnology.naagu.models.CreditRecord" />
+        <mapping class="com.vktechnology.naagu.models.SourceRecord" />
+        <mapping class="com.vktechnology.naagu.models.login.Users" />
+        <mapping class="com.vktechnology.naagu.models.login.UserRole" />
+        <mapping class="com.vktechnology.naagu.models.DebitRecord" />
+        <mapping class="com.vktechnology.naagu.models.CreditClearRecord" />
+        <mapping class="com.vktechnology.naagu.models.DebitClearRecord" />
+        <mapping class="com.vktechnology.naagu.models.Dairy" />
+    </session-factory>
+	    
+</hibernate-configuration>

@@ -28,6 +28,7 @@ public class StudentDaoImpl implements StudentDao{
 	public String addStudent(Student student){
 
 		logger.debug("------------inside--------------");
+		logger.info("------------insideinfo--------------");
 		long a = (Long) sessionFactory.getCurrentSession().save(student);
 		return a+"";
 	}

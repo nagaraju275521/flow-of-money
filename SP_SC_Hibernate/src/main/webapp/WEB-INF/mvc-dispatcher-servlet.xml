@@ -138,10 +138,19 @@
     <bean id="dairyService" class="com.vktechnology.naagu.service.DairyServiceImpl"></bean>
     
     <bean id="studentDao" class="com.vktechnology.naagu.dao.StudentDaoImpl">
+    	<property name="sessionFactory" ref="sessionFactory" />
     	<constructor-arg>
-    		<ref bean="sessionFactory"></ref>
-    	</constructor-arg>
+            <ref bean="sessionFactory" />
+        </constructor-arg>
     </bean>    
+    
+    <bean id="studentDao1" class="com.vktechnology.naagu.dao.StudentDaoImpl">
+    	<property name="sessionFactory" ref="sessionFactory" />
+    	<constructor-arg>
+            <ref bean="sessionFactory" />
+        </constructor-arg>
+    </bean>  
+    
     <bean id="studentService" class="com.vktechnology.naagu.service.StudentServiceImpl"></bean>
     
     <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">

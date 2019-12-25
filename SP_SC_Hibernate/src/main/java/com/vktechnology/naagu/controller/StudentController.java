@@ -24,6 +24,7 @@ public class StudentController{
         logger.info("-------------++ student ++------------");
         Student s = new Student();
         s.setName("naagu");
+        s.setRollNo(100);
         String showpath = studentService.addStudent(s);
         model.addObject("names", showpath);
         model.setViewName("student");

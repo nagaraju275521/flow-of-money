@@ -9,7 +9,6 @@ import javax.transaction.Transactional;
 import org.apache.log4j.Logger;
 import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,8 +62,8 @@ public static void setAfterClass(){
 /*@Transactional
 @Rollback(true)*/
 public void testFail() throws Exception {
-	BigDecimal b = new BigDecimal("9.00");
-	assertEquals(b, debitService.debitBalance("naagu@gmail.com", "bheem"));
+	BigDecimal b = debitService.debitBalance("naagu@gmail.com", "bheem");
+	assertFalse(b.equals(0));
 	logger.info("Success--"+debitDao.debitBalance("naagu@gmail.com", "bheem"));
 	
 	}

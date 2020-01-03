@@ -21,6 +21,11 @@ public class StudentController{
 	@RequestMapping(value = "/openStudentResult", method = RequestMethod.GET)
     public ModelAndView openStudent() {
 		ModelAndView model  = new ModelAndView();
+        logger.debug("Log4jExample: A Sample Debug Message");
+        logger.info("Log4jExample: A Sample Info  Message");
+        logger.warn("Log4jExample: A Sample Warn  Message");
+        logger.error("Log4jExample: A Sample Error Message");
+        logger.fatal("Log4jExample: A Sample Fatal Message");  
         logger.info("-------------++ student ++------------");
         Student s = new Student();
         s.setName("naagu");

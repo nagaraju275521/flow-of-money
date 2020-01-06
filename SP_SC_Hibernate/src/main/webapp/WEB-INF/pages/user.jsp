@@ -98,6 +98,8 @@
 			<li><a href="./openDairyResult" target="Body">Dairy Result</a></li>
 			<li><a href="./openStudentResult" target="Body">Student</a></li>
 			<li><a href="./openEmployeeResult" target="Body">Employee</a></li>
+			<li><a href="./exceone" target="Body">exceone</a></li>
+			<li><a href="./excetwo" target="Body">excetwo</a></li>
 		</ul>
 	</li>	
 	<li style="float: right;">

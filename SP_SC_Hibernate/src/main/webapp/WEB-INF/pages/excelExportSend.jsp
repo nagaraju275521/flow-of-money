@@ -140,26 +140,26 @@ function SelectTable(){
 
 <div style="width: 75%;margin-left: auto;margin-top: 50px;">
 <div style="border-bottom: 1px solid black;width:25%;">
-<input type="checkbox" value="SendMail" name="selectmail" onclick="return SelectMail();" style="margin-left: 4px;" />Slect mail
+<input type="checkbox" value="SendMail" name="selectmail" onclick="return SelectMail();" style="margin-left: 1px;" />&nbsp;&nbsp;&nbsp;Select mail
 </div>
 <div>	 
 <form action="#" name="admin" method="get">	
 	<table>
 
 	<tr>
-	<td style="width: 25px;"> <input type="checkbox" name="getFile"  value="Debit" onclick="return SelectTable();" /></td><td style="width: 300px;">Debit:</td>
+	<td style="width: 25px;"> <input type="checkbox" name="getFile"  value="Debit" onclick="return SelectTable();" /></td><td style="width: 300px;">Debit</td>
 </tr>
 <tr>
-	<td style="width: 25px;"> <input type="checkbox" name="getFile" value="Expenses" onclick="return SelectTable();" /></td><td style="width: 300px;">Expenses:</td>
+	<td style="width: 25px;"> <input type="checkbox" name="getFile" value="Expenses" onclick="return SelectTable();" /></td><td style="width: 300px;">Expenses</td>
 </tr>
 <tr>
-	<td style="width: 25px;"> <input type="checkbox"  name="getFile" value="Credit" onclick="return SelectTable();" /></td><td style="width: 300px;">credit:</td>
+	<td style="width: 25px;"> <input type="checkbox"  name="getFile" value="Credit" onclick="return SelectTable();" /></td><td style="width: 300px;">credit</td>
 </tr>
 <tr>
-	<td style="width: 25px;"> <input type="checkbox"  name="getFile" value="Holder" onclick="return SelectTable();" /></td><td style="width: 300px;">Holder:</td>
+	<td style="width: 25px;"> <input type="checkbox"  name="getFile" value="Holder" onclick="return SelectTable();" /></td><td style="width: 300px;">Holder</td>
 </tr>
 <tr>
-	<td style="width: 25px;"> <input type="checkbox" name="getFile" value="Source" onclick="return SelectTable();" /></td><td style="width: 300px;">Source:</td>
+	<td style="width: 25px;"> <input type="checkbox" name="getFile" value="Source" onclick="return SelectTable();" /></td><td style="width: 300px;">Source</td>
 </tr>
 <tr>
 	<td style="width: 25px;"> <input type="checkbox" name="getFile" value="DebitRecord" onclick="return SelectTable();" /></td><td style="width: 300px;">Debit Record</td>

@@ -1,8 +1,10 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:cache="http://www.springframework.org/schema/cache" xmlns:mvc="http://www.springframework.org/schema/mvc"
-       xmlns:p="http://www.springframework.org/schema/p" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:cache="http://www.springframework.org/schema/cache" 
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:p="http://www.springframework.org/schema/p" 
+       xmlns:tx="http://www.springframework.org/schema/tx"
        xmlns:security="http://www.springframework.org/schema/security"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd
@@ -35,6 +37,7 @@
 	<security:global-method-security    pre-post-annotations="enabled"  secured-annotations="enabled" /> 
 	
 	<mvc:interceptors>
+        <bean class="com.vktechnology.naagu.interceptores.AppInterceptor"></bean>
         <bean id="webContentInterceptor" class="org.springframework.web.servlet.mvc.WebContentInterceptor">
                 <property name="cacheSeconds" value="0"/>
                 <property name="useExpiresHeader" value="false"/>

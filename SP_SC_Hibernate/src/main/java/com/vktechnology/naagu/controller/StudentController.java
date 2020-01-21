@@ -1,8 +1,10 @@
 package com.vktechnology.naagu.controller;
 
 import java.io.IOException;
+
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.vktechnology.naagu.models.AppException;
 import com.vktechnology.naagu.models.Student;
 import com.vktechnology.naagu.service.StudentService;
+import org.springframework.web.client.RestTemplate;
 
 @Controller
 public class StudentController{
@@ -72,6 +75,28 @@ public class StudentController{
 		}finally{
 			logger.info("-------finally--------");
 		}
+		return model;
+	}
+	
+	@RequestMapping(value = "/clientrest", method = RequestMethod.GET)
+	public void clientCode() {
+		RestTemplate re = new RestTemplate();
+		String u = "http://localhost:8080/FlowOfMoney/stu/";
+		@SuppressWarnings("unchecked")
+		List<Student> s = re.getForObject(u, List.class);
+		logger.info(s.size());
+		logger.info("-------------client--------------"+s);
+	}
+	
+
+	@RequestMapping(value = "/clientSchool", method = RequestMethod.GET)
+	public ModelAndView clientSchool() {
+		ModelAndView model = new ModelAndView();
+		RestTemplate re = new RestTemplate();
+		String u = "http://192.168.1.15:8084/SpringMVCHibernateManyToManyCRUDExample/usi";
+		Student s = re.getForObject(u, Student.class);
+		model.setViewName("student");
+		logger.info("-------------client---school-----------"+s.getName());
 		return model;
 	}
 	

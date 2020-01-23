@@ -30,6 +30,10 @@
 		</property>
 	</bean>
 	
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+    	<property name="maxUploadSize" value="20848820" />
+	</bean>
+	
 	<mvc:resources mapping="/htmlpages/**" location="/WEB-INF/htmlpages/" />
 	
 	<mvc:annotation-driven />
@@ -156,6 +160,14 @@
     
     <bean id="studentService" class="com.vktechnology.naagu.service.StudentServiceImpl"></bean>
     
+    <bean id="galleryDao" class="com.vktechnology.naagu.dao.GalleryDaoImpl">
+    	<constructor-arg>
+            <ref bean="sessionFactory" />
+        </constructor-arg>
+    </bean>  
+    
+    <bean id="galleryService" class="com.vktechnology.naagu.service.GalleryServiceImpl"></bean>
+    
     <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
         <property name="host" value="smtp.gmail.com" />
         <property name="port" value="587" />
@@ -171,6 +183,7 @@
                </props>
         </property>
     </bean>
+    
     
 	 
 </beans>

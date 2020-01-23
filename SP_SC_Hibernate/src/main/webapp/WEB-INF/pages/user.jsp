@@ -96,6 +96,7 @@
 		<ul>
 			<li><a href="./dairy" target="Body">Dairy</a>
 			<li><a href="./openDairyResult" target="Body">Dairy Result</a></li>
+			<li><a href="./galleryPage" target="Body">Gallery</a></li>
 			<li><a href="./openStudentResult" target="Body">Student</a></li>
 			<li><a href="./openEmployeeResult" target="Body">Employee</a></li>
 			<li><a href="./exceone" target="Body">exceone</a></li>

@@ -11,7 +11,7 @@
 <body>
     
       <center>
-       <div style="margin: 100px;">
+       <div style="margin: 100px;border: 1px solid red;">
     
     <form method="post" action="./saveGallery?${_csrf.parameterName}=${_csrf.token}" enctype="multipart/form-data">
     	<input type="file" name="file" value="" />

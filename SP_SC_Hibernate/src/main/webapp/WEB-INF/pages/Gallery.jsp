@@ -10,12 +10,14 @@
 </head>
 <body>
     
-      
-        <a href="./saveGallery?file=20" >xxx</a>
+      <center>
+       <div style="margin: 100px;">
     
     <form method="post" action="./saveGallery?${_csrf.parameterName}=${_csrf.token}" enctype="multipart/form-data">
     	<input type="file" name="file" value="" />
     	<input type="submit" value="submit" />
     </form>
+    </div>
+    </center>
 </body>
 </html>

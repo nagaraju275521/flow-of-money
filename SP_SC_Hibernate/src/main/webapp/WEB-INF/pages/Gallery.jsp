@@ -18,7 +18,7 @@
     	<input type="submit" value="submit" />
     </form>
     </div>
-    </center>\
+    </center>
    
 </body>
 </html>

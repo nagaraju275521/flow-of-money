@@ -45,10 +45,13 @@ public class GalleryController extends MultiActionController{
     		@RequestParam("file") MultipartFile file) throws MultipartException, IOException{
 		logger.info("--------xxxxxxxxxx---------"+file.getOriginalFilename());
 		byte[] bytes = file.getBytes();
+		long size = file.getSize();
 		ModelAndView mod = new ModelAndView();
 		mod.setViewName("Gallery");
 		
-		logger.info("----------save gallery----------");
+		logger.info("------size----------"+size);
+		logger.info("-------Name---------"+file.getName());
+		logger.info("----------save gallery----------"+bytes);
 		//MultipartFile bytes = gallery.getBytes();
 		
 		return mod;

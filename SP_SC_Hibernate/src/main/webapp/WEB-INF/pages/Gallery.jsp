@@ -6,7 +6,34 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Add Product Form</title>
+<title>Add Gallery</title>
+<script> 
+    Filevalidation = () => { 
+        const fi = document.getElementById('file'); 
+        // Check if any file is selected. 
+        if (fi.files.length > 0) { 
+            for (const i = 0; i <= fi.files.length - 1; i++) { 
+  
+                const fsize = fi.files.item(i).size; 
+                alert(fsize);
+                const file = Math.round((fsize / 1024)); 
+                // The size of the file. 
+                if (file >= 96) { 
+                    alert( 
+                      "File too Big, please select a file less than 96kb"); 
+                } else if (file < 48) { 
+                    alert( 
+                      "File too small, please select a file greater than 48kb"); 
+                } else { 
+                    document.getElementById('size').innerHTML = '<b>'
+                    + file + '</b> KB'; 
+                } 
+            } 
+        }else{
+        	alert("select");
+        } 
+    } 
+</script>
 </head>
 <body>
     
@@ -14,7 +41,7 @@
        <div style="margin: 100px;border: 1px solid red;padding: 20px;">
     
     <form method="post" action="./saveGallery?${_csrf.parameterName}=${_csrf.token}" enctype="multipart/form-data">
-    	<input type="file" name="file" value="" />
+    	<input type="file" name="file" value="" id="file" onchange="Filevalidation();" />
     	<input type="submit" value="submit" />
     </form>
     </div>

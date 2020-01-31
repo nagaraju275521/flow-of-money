@@ -31,7 +31,7 @@ function val(){
                 } 
             } 
         }else{
-        	alert("select file");
+        	alert("select a file between 50kb and 99kb");
         	return false;
         } 
     } 
